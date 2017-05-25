@@ -6,9 +6,15 @@ import (
 	"encoding/json"
 )
 
-// PaymentPayTypeController operations for PaymentPayType
+// PaymentChargesController operations for PaymentCharges
 type PaymentChargesController struct {
 	beego.Controller
+}
+
+type Response struct {
+	state	bool
+	msg	string
+	data	string
 }
 
 // URLMapping ...
@@ -36,14 +42,10 @@ func (c *PaymentChargesController) Post() {
 		c.Data["json"] = err.Error()
 	}
 
-	type Student struct {
-		Name    string
-		Age     int
-	}
-	st := &Student {
-		"Xiao Ming",
-		16,
-	}
-	c.Data["json"] = st
+	m := make(map[string]string, 0)
+
+	m["appid"] = "123"
+	m["app"] = "123"
+	c.Data["json"] = m
 	c.ServeJSON()
 }
